@@ -5,6 +5,8 @@
 bin
 .terraform
 .vscode
+terraform.*
+
 
 ### STS ###
 .apt_generated

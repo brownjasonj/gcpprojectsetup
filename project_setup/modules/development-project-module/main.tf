@@ -8,6 +8,11 @@ locals {
     service_account_id = format("service-account-%s", lower(random_string.random.result))
 }
 
+resource "google_folder" "department" {
+    display_name    = var.department_id
+    parent          = format("organizations/%s", var.organization_id)
+}
+
 resource "google_project" "project" {
     name        = var.name
     project_id  = local.project_id
@@ -26,17 +31,6 @@ resource "google_project" "project" {
         data_classification = var.data_classification
         region = var.region
     }
-}
-
-resource "google_folder" "department" {
-    display_name    = var.department_id
-    parent          = format("organizations/%s", var.organization_id)
-}
-
-resource "google_project_iam_member" "project" {
-  project = local.project_id
-  role    = "roles/editor"
-  member  = "user:brownjasonj@gmail.com"
 }
 
 resource "google_service_account" "service_account" {

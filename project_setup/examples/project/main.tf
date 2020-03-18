@@ -4,7 +4,7 @@ provider "google" {
 }
 
 module "development_project" {
-    source              = "./development-project-module" # Path to the module
+    source              = "../../modules/project_creation" # Path to the module
     organization_id     = "964137068439" 
     department_id       = "dept-2"
     name                = "Test Risk Data Flow"
